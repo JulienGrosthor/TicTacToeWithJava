@@ -19,16 +19,19 @@ public class TicTacToe {
 
         // Initialisation des joueurs
         player1 = new Player(" X ");
-        player2 = new Player(" O");
+        player2 = new Player(" O ");
         currentPlayer = player1;
     }
 
     // Méthode pour jouer à tour de rôle.
     public void play() {
+
+        display();
+
         int turns = 0; // compteur pour savoir combien de coups ont été joués.
 
-        // Tant que le plateau n'est pas plein (avec les 9 cases remplies donc).
-        while (turns < SIZE * SIZE) {
+        // Tant que le jeu n'est pas terminé
+        while (!isOver() && turns < SIZE * SIZE) {
             // Afficher le plateau
             display();
 
@@ -40,19 +43,113 @@ public class TicTacToe {
                 board[move[0]][move[1]].setRepresentation(currentPlayer.getRepresentation());
                 turns++;
 
-                // Si toutes les cases sont remplies, le jeu se termine.
-                if (turns == SIZE * SIZE) {
-                    display(); // Plateau final.
-                    System.out.println("All cells are filled in, the game is over");
-                    break;
+                // Vérifier si le jeu est terminé après le coup
+                if (isOver()) {
+                    display(); // Afficher le plateau final
+                    System.out.println("Player " + currentPlayer.getRepresentation() + " wins!");
+                    return;
                 }
 
                 // Changer de joueur après chaque coup
                 currentPlayer = (currentPlayer == player1) ? player2 : player1;
             } else {
-                System.out.println("CELL IS ALREADY TAKEN, PLEASE TRY AGAIN.");
+                System.out.println("Cell is already taken, please try again.");
             }
         }
+
+        // Si toutes les cases sont remplies sans gagnant
+        if (!isOver()) {
+            display();
+            System.out.println("It's a draw! The game is over.");
+        }
+    }
+
+    // Méthode pour obtenir le coup du joueur
+    public int[] getMoveFromPlayer() {
+        Scanner scanner = new Scanner(System.in);
+        int row;
+        int col;
+
+        while (true) {
+            System.out.print("Player " + currentPlayer.getRepresentation() + ", enter row and column number (between 1 and 3): ");
+            try {
+                row = scanner.nextInt() - 1; // Décrémenter pour que les indices commencent à 0.
+                col = scanner.nextInt() - 1; // Décrémenter pour que les indices commencent à 0.
+
+                if (row >= 0 && row < SIZE && col >= 0 && col < SIZE) {
+                    return new int[]{row, col};
+                } else {
+                    System.out.println("Invalid row or column number. Please enter numbers between 1 and 3.");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please enter numbers between 1 and 3.");
+                scanner.nextLine(); // Clear buffer
+            }
+        }
+    }
+
+    // Méthode pour vérifier si le jeu est terminé
+    public boolean isOver() {
+        // Vérifier toutes les lignes
+        for (int i = 0; i < SIZE; i++) {
+            if (areAllCellsEqual(board[i])) {
+                return true;
+            }
+        }
+
+        // Vérifier toutes les colonnes
+        for (int i = 0; i < SIZE; i++) {
+            if (areAllCellsEqual(getColumn(i))) {
+                return true;
+            }
+        }
+
+        // Vérifier les deux diagonales
+        if (areAllCellsEqual(getPrimaryDiagonal()) || areAllCellsEqual(getSecondaryDiagonal())) {
+            return true;
+        }
+
+        // Si aucune condition n'est remplie
+        return false;
+    }
+
+    // Vérifie si toutes les cellules d'une ligne/colonne/diagonale sont identiques
+    private boolean areAllCellsEqual(Cell[] cells) {
+        String first = cells[0].getRepresentation();
+        if (first.equals("   ")) return false; // Case vide : pas de victoire
+        for (Cell cell : cells) {
+            if (!cell.getRepresentation().equals(first)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Retourne une colonne sous forme de tableau
+    private Cell[] getColumn(int colIndex) {
+        Cell[] column = new Cell[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            column[i] = board[i][colIndex];
+        }
+        return column;
+    }
+
+    // Retourne la diagonale principale (de haut-gauche à bas-droite)
+    private Cell[] getPrimaryDiagonal() {
+        Cell[] diagonal = new Cell[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            diagonal[i] = board[i][i];
+        }
+        return diagonal;
+    }
+
+    // Retourne la diagonale secondaire (de haut-droite à bas-gauche)
+    private Cell[] getSecondaryDiagonal() {
+        Cell[] diagonal = new Cell[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            diagonal[i] = board[i][SIZE - 1 - i];
+        }
+        return diagonal;
     }
 
     // Méthode pour afficher le plateau de jeu
@@ -78,29 +175,5 @@ public class TicTacToe {
             System.out.println();
         }
         System.out.println("-------------");
-    }
-
-    // Méthode pour obtenir le coup du joueur
-    public int[] getMoveFromPlayer() {
-        Scanner scanner = new Scanner(System.in);
-        int row;
-        int col;
-
-        while (true) {
-            System.out.print("Player " + currentPlayer.getRepresentation() + ", enter row and column number (between 1 and 3): ");
-            try {
-                row = scanner.nextInt() - 1; // Décrémenter pour que les indices commencent à 0.
-                col = scanner.nextInt() - 1; // Décrémenter pour que les indices commencent à 0.
-
-                if (row >= 0 && row < SIZE && col >= 0 && col < SIZE) {
-                    return new int[]{row, col};
-                } else {
-                    System.out.println("Invalid row or column number. Please enter numbers between 1 and 3.");
-                }
-            } catch (Exception e) {
-                System.out.println("Invalid input. Please enter numbers between 1 and 3.");
-                scanner.nextLine(); // Clear buffer
-            }
-        }
     }
 }
