@@ -1,11 +1,19 @@
 public class Cell {
 
-    /**
-     * Retourne la représentation de la cellule.
-     *
-     * @return Une chaîne de caractères "   " (trois espaces)
-     */
+    private String representation;
+
+    // Constructeur pour initialiser la représentation de la cellule
+    public Cell() {
+        this.representation = "   "; // La cellule est vide au départ
+    }
+
+    // Méthode pour obtenir la représentation de la cellule
     public String getRepresentation() {
-        return "   ";
+        return representation;
+    }
+
+    // Méthode pour définir la représentation de la cellule (marquer la cellule)
+    public void setRepresentation(String representation) {
+        this.representation = representation;
     }
 }
