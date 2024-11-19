@@ -7,11 +7,6 @@ public class ArtificialPlayer extends Player {
 
     @Override
     public int[] makeMove(Cell[][] board) {
-        return new int[0];
-    }
-
-    // Méthode pour obtenir le coup du joueur artificiel
-    public int[] getMove(Cell[][] board) {
         Random random = new Random();
         int row, col;
 
@@ -22,4 +17,9 @@ public class ArtificialPlayer extends Player {
 
         return new int[]{row, col};
     }
+
+//    // Méthode pour obtenir le coup du joueur artificiel
+//    public int[] getMove(Cell[][] board) {
+//
+//    }
 }
