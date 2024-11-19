@@ -17,10 +17,19 @@ public class TicTacToe {
             }
         }
 
-        // Initialisation des joueurs
-        player1 = new Player(" X ");
-        player2 = new Player(" O ");
-        currentPlayer = player1;
+        // Configuration des joueurs, si bot ou pas.
+        Scanner scanner = new Scanner(System.in);
+        // Config joueur 1
+        System.out.println("Is Player 1 (X) a human? (yay/nay)");
+        String input1 = scanner.nextLine();
+        player1 = input1.equalsIgnoreCase("yay") ? new HumanPlayer(" X ") : new ArtificialPlayer(" X ");
+        // Config joueur 2
+        System.out.println("Is Player 2 (O) a human? (yay/nay)");
+        String input2 = scanner.nextLine();
+        player2 = input2.equalsIgnoreCase("yay") ? new HumanPlayer(" O ") : new ArtificialPlayer(" O ");
+
+        currentPlayer = player1; // On commence toujours par le joueur 1.
+
     }
 
     // Méthode pour jouer à tour de rôle.
@@ -62,8 +71,19 @@ public class TicTacToe {
         }
     }
 
-    // Méthode pour obtenir le coup du joueur
     public int[] getMoveFromPlayer() {
+        if (currentPlayer instanceof ArtificialPlayer) {
+            // Si le joueur actuel est un joueur artificiel, obtenir un coup automatiquement
+            System.out.println("Bot player plays: ");
+            return ((ArtificialPlayer) currentPlayer).getMove(board);
+        } else {
+            // Sinon, demander le coup à l'utilisateur
+            return getMoveFromHuman();
+        }
+    }
+
+    // Extraire la logique pour un joueur humain
+    private int[] getMoveFromHuman() {
         Scanner scanner = new Scanner(System.in);
         int row;
         int col;
