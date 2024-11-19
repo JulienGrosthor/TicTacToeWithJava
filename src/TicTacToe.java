@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class TicTacToe {
 
     private static final int SIZE = 3; // Taille du plateau de jeu
-    private Cell[][] board; // Plateau de jeu
-    private Player player1; // Le joueur 1 (X).
-    private Player player2; // Le joueur 2 (O).
+    private Cell[][] board; // Plateau de jeu en 2D.
+    private Player player1; // Le joueur 1.
+    private Player player2; // Le joueur 2.
     private Player currentPlayer; // Le joueur actuel.
 
     // Constructeur pour initialiser le plateau de jeu et les joueurs
@@ -25,8 +25,6 @@ public class TicTacToe {
 
     // Méthode pour jouer à tour de rôle.
     public void play() {
-
-        display();
 
         int turns = 0; // compteur pour savoir combien de coups ont été joués.
 
@@ -155,15 +153,14 @@ public class TicTacToe {
     // Méthode pour afficher le plateau de jeu
     public void display() {
 
-        System.out.println("\n" +
-                "\n" +
-                "╭━━━━╮╱╱╱╭━━━━╮╱╱╱╱╱╭━━━━╮\n" +
-                "┃╭╮╭╮┃╱╱╱┃╭╮╭╮┃╱╱╱╱╱┃╭╮╭╮┃\n" +
-                "╰╯┃┃┣╋━━╮╰╯┃┃┣┻━┳━━╮╰╯┃┃┣┻━┳━━╮\n" +
-                "╱╱┃┃┣┫╭━╯╱╱┃┃┃╭╮┃╭━╯╱╱┃┃┃╭╮┃┃━┫\n" +
-                "╱╱┃┃┃┃╰━╮╱╱┃┃┃╭╮┃╰━╮╱╱┃┃┃╰╯┃┃━┫\n" +
-                "╱╱╰╯╰┻━━╯╱╱╰╯╰╯╰┻━━╯╱╱╰╯╰━━┻━━╯\n" +
-                "It's time to dudu du dududududuelll!!");
+        System.out.println("""
+                ╭━━━━╮╱╱╱╭━━━━╮╱╱╱╱╱╭━━━━╮
+                ┃╭╮╭╮┃╱╱╱┃╭╮╭╮┃╱╱╱╱╱┃╭╮╭╮┃
+                ╰╯┃┃┣╋━━╮╰╯┃┃┣┻━┳━━╮╰╯┃┃┣┻━┳━━╮
+                ╱╱┃┃┣┫╭━╯╱╱┃┃┃╭╮┃╭━╯╱╱┃┃┃╭╮┃┃━┫
+                ╱╱┃┃┃┃╰━╮╱╱┃┃┃╭╮┃╰━╮╱╱┃┃┃╰╯┃┃━┫
+                ╱╱╰╯╰┻━━╯╱╱╰╯╰╯╰┻━━╯╱╱╰╯╰━━┻━━╯
+                It's time to dudu du dududududuelll!!""");
 
         // Afficher le plateau
         for (int i = 0; i < SIZE; i++) {

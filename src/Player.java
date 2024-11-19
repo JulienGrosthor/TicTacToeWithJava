@@ -1,4 +1,4 @@
-public class Player {
+public abstract class Player {
 
     private String representation;
 
@@ -11,4 +11,8 @@ public class Player {
     public String getRepresentation() {
         return representation;
     }
+
+    // Méthode abstraite pour jouer un coup
+    public abstract int[] makeMove(Cell[][] board);
+
 }
