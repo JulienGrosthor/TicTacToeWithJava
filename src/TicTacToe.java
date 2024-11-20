@@ -7,8 +7,7 @@ public class TicTacToe {
     private Player player1; // Le joueur 1.
     private Player player2; // Le joueur 2.
     private Player currentPlayer; // Le joueur actuel.
-    //    private int player1Score = 0;
-//    private int player2Score = 0;
+
     Scanner scanner = new Scanner(System.in);
 
 
@@ -60,11 +59,11 @@ public class TicTacToe {
             // Marquer la case avec le symbole du joueur actuel.
             cellEmpty(move);
 
-            if (!isOver(this.board) || !isDraw()) {
+            if (!(isDraw() || isOver(this.board))) {
                 changeCurrentPlayer();
             }
 
-        } while (isDraw() || isOver(this.board));
+        } while (!(isDraw() || isOver(this.board)));
 
         display();
         System.out.println("WINNER WINNER CHICKEN DINNER!!!");
@@ -87,54 +86,9 @@ public class TicTacToe {
     }
 
     public int[] getMoveFromPlayer(Player player) {
-//        if (this.currentPlayer instanceof ArtificialPlayer) {
-//            // Si le joueur actuel est un joueur artificiel, obtenir un coup automatiquement
-//            System.out.println("Bot player plays: ");
-//            return currentPlayer.makeMove(board);
-//        }
-//        return getMoveFromHuman();
+
         return player.makeMove(this.board);
     }
-
-    // Extraire la logique pour un joueur humain
-//    private int[] getMoveFromHuman() {
-//        int row;
-//        int col;
-//
-//        while (true) {
-//            System.out.print("Player " + currentPlayer.getRepresentation() + ", enter row and column number (between 1 and 3): ");
-//            try {
-//                row = scanner.nextInt() - 1; // Décrémenter pour que les indices commencent à 0.
-//                col = scanner.nextInt() - 1; // Décrémenter pour que les indices commencent à 0.
-//
-//                if (row >= 0 && row < size && col >= 0 && col < size) {
-//                    return new int[]{row, col};
-//                } else {
-//                    System.out.println("Invalid row or column number. Please enter numbers between 1 and 3.");
-//                }
-//            } catch (Exception e) {
-//                System.out.println("Invalid input. Please enter numbers between 1 and 3.");
-//                scanner.nextLine(); // Clear buffer
-//            }
-//        }
-//    }
-
-//    public boolean isWinningMove(int row, int col) {
-//        // Vérifier la ligne du dernier coup
-//        if (areAllCellsEqual(board[row])) return true;
-//
-//        // Vérifier la colonne du dernier coup
-//        if (areAllCellsEqual(getColumn(col))) return true;
-//
-//        // Vérifier la diagonale principale si applicable
-//        if (row == col && areAllCellsEqual(getPrimaryDiagonal())) return true;
-//
-//        // Vérifier la diagonale secondaire si applicable
-//        if (row + col == size - 1 && areAllCellsEqual(getSecondaryDiagonal())) return true;
-//
-//        return false;
-//    }
-
 
     // Méthode pour vérifier si le jeu est à égalité
     private boolean isDraw() {

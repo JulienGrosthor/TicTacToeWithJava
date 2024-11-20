@@ -17,9 +17,4 @@ public class ArtificialPlayer extends Player {
 
         return new int[]{row, col};
     }
-
-//    // Méthode pour obtenir le coup du joueur artificiel
-//    public int[] getMove(Cell[][] board) {
-//
-//    }
 }
