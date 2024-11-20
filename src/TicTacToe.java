@@ -18,15 +18,18 @@ public class TicTacToe {
     }
 
     private void initPlayers() {
+
+        View view = new View();
+
         // Config joueur 1
-        System.out.println("Is Player 1 (X) a human? (yay/nay)");
+        view.playerOneChoice();
         String input1 = scanner.nextLine();
         this.player1 = input1.equalsIgnoreCase("yay")
                 ? new HumanPlayer(" X ")
                 : new ArtificialPlayer(" X ");
 
         // Config joueur 2
-        System.out.println("Is Player 2 (O) a human? (yay/nay)");
+        view.playerTwoChoice();
         String input2 = scanner.nextLine();
         this.player2 = input2.equalsIgnoreCase("yay")
                 ? new HumanPlayer(" O ")
@@ -48,12 +51,16 @@ public class TicTacToe {
     // Méthode pour jouer à tour de rôle.
     public void play() {
 
+        View view = new View();
+
         // Tant que le jeu n'est pas terminé
         do {
             // Afficher le plateau
             display();
 
             // Demander le coup du joueur actuel.
+            view.playerMoveChoice(currentPlayer);
+
             int[] move = getMoveFromPlayer(this.currentPlayer);
 
             // Marquer la case avec le symbole du joueur actuel.
@@ -66,8 +73,7 @@ public class TicTacToe {
         } while (!(isDraw() || isOver(this.board)));
 
         display();
-        System.out.println("WINNER WINNER CHICKEN DINNER!!!");
-
+        view.victoryText();
     }
 
     private void changeCurrentPlayer() {
@@ -75,13 +81,16 @@ public class TicTacToe {
     }
 
     private void cellEmpty(int[] move) {
+
+        View view = new View();
+
         if (board[move[0]][move[1]].getRepresentation().equals("   ")) {
 
             board[move[0]][move[1]].setRepresentation(currentPlayer.getRepresentation());
             // Changer de joueur après chaque coup
 
         } else {
-            System.out.println("Cell is already taken, please try again.");
+            view.cellTaken();
         }
     }
 
@@ -172,32 +181,12 @@ public class TicTacToe {
 
     // Méthode pour afficher le plateau de jeu
     public void display() {
-        displayBanner();
-        displayBoard();
+
+        View view = new View();
+
+        view.displayBanner();
+        view.displayBoard(this.board, this.size);
     }
 
-    private void displayBoard() {
-        // Afficher le plateau
-        for (int i = 0; i < size; i++) {
-            System.out.println("-------------");
-            System.out.print("|");
-            for (int j = 0; j < size; j++) {
-                System.out.print(board[i][j].getRepresentation() + "|");
-            }
-            System.out.println();
-        }
-        System.out.println("-------------");
-    }
-
-    private void displayBanner() {
-        System.out.println("""
-                ╭━━━━╮╱╱╱╭━━━━╮╱╱╱╱╱╭━━━━╮
-                ┃╭╮╭╮┃╱╱╱┃╭╮╭╮┃╱╱╱╱╱┃╭╮╭╮┃
-                ╰╯┃┃┣╋━━╮╰╯┃┃┣┻━┳━━╮╰╯┃┃┣┻━┳━━╮
-                ╱╱┃┃┣┫╭━╯╱╱┃┃┃╭╮┃╭━╯╱╱┃┃┃╭╮┃┃━┫
-                ╱╱┃┃┃┃╰━╮╱╱┃┃┃╭╮┃╰━╮╱╱┃┃┃╰╯┃┃━┫
-                ╱╱╰╯╰┻━━╯╱╱╰╯╰╯╰┻━━╯╱╱╰╯╰━━┻━━╯
-                It's time to dudu du dududududuelll!!""");
-    }
 }
 
