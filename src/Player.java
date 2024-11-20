@@ -1,6 +1,6 @@
 public abstract class Player {
 
-    private String representation;
+    private final String representation;
 
     // Constructeur pour initialiser la représentation du joueur
     public Player(String representation) {
