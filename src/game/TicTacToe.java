@@ -1,3 +1,8 @@
+package game;
+
+import player.Player;
+import vue.View;
+
 /**
  * Classe principale du jeu de Tic Tac Toe.
  * Gère l'initialisation du plateau, des joueurs, et la logique du jeu.

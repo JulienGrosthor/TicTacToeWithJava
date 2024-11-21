@@ -1,3 +1,10 @@
+package game;
+
+import player.Player;
+import player.HumanPlayer;
+import player.ArtificialPlayer;
+import vue.View;
+
 import java.util.Scanner;
 
 /**

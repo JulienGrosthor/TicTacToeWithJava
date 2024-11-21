@@ -1,3 +1,6 @@
+package player;
+import game.Cell;
+
 /**
  * Classe abstraite représentant un joueur de Tic Tac Toe.
  * Les joueurs peuvent être humains ou artificiels.

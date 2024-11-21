@@ -1,3 +1,5 @@
+import game.TicTacToe;
+
 /**
  * Classe principale contenant le point d'entrée du programme.
  * Démarre le jeu de Tic Tac Toe.

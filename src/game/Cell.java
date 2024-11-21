@@ -1,3 +1,5 @@
+package game;
+
 /**
  * Classe représentant une cellule du plateau de jeu.
  * Chaque cellule contient une représentation visuelle (vide ou occupée par un joueur).

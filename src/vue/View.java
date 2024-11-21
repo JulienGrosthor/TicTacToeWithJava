@@ -1,3 +1,8 @@
+package vue;
+
+import game.Cell;
+import player.Player;
+
 /**
  * Classe responsable de l'affichage des messages et du plateau de jeu.
  * Elle centralise toutes les interactions visuelles.
@@ -17,14 +22,14 @@ public class View {
      * @param currentPlayer Le joueur dont c'est le tour.
      */
     public void playerMoveChoice(Player currentPlayer) {
-        System.out.println("Player " + currentPlayer.getRepresentation() + ", enter row + ENTER, then column + ENTER (between 1 and 3): ");
+        System.out.println("player " + currentPlayer.getRepresentation() + ", enter row + ENTER, then column + ENTER (between 1 and 3): ");
     }
 
     /**
      * Affiche un message lorsque la cellule choisie est déjà prise.
      */
     public void cellTaken() {
-        System.out.println("Cell is already taken, please try again.");
+        System.out.println("game.Cell is already taken, please try again.");
     }
 
     /**
@@ -64,14 +69,14 @@ public class View {
      * Affiche un message pour demander si le joueur 1 est humain ou artificiel.
      */
     public void playerOneChoice() {
-        System.out.println("Is Player 1 (X) a human? (yay/nay)");
+        System.out.println("Is Player.Player 1 (X) a human? (yay/nay)");
     }
 
     /**
      * Affiche un message pour demander si le joueur 2 est humain ou artificiel.
      */
     public void playerTwoChoice() {
-        System.out.println("Is Player 2 (O) a human? (yay/nay)");
+        System.out.println("Is Player.Player 2 (O) a human? (yay/nay)");
     }
 
     /**

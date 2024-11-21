@@ -1,4 +1,9 @@
+package player;
+
+
 import java.util.Random;
+import game.Cell;
+
 
 /**
  * Classe représentant un joueur artificiel pour le jeu de Tic Tac Toe.
