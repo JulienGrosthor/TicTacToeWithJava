@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class TicTacToe {
 
     private final int size = 3; // Taille du plateau de jeu
@@ -7,9 +5,6 @@ public class TicTacToe {
     private Player player1; // Le joueur 1.
     private Player player2; // Le joueur 2.
     private Player currentPlayer; // Le joueur actuel.
-
-    Scanner scanner = new Scanner(System.in);
-
 
     // Constructeur pour initialiser le plateau de jeu et les joueurs
     public TicTacToe() {
@@ -20,20 +15,15 @@ public class TicTacToe {
     private void initPlayers() {
 
         View view = new View();
+        UserInteraction userInteraction = new UserInteraction();
 
         // Config joueur 1
         view.playerOneChoice();
-        String input1 = scanner.nextLine();
-        this.player1 = input1.equalsIgnoreCase("yay")
-                ? new HumanPlayer(" X ")
-                : new ArtificialPlayer(" X ");
+        player1 = userInteraction.initPlayerOne();
 
         // Config joueur 2
         view.playerTwoChoice();
-        String input2 = scanner.nextLine();
-        this.player2 = input2.equalsIgnoreCase("yay")
-                ? new HumanPlayer(" O ")
-                : new ArtificialPlayer(" O ");
+        player2 = userInteraction.initPlayerTwo();
 
         this.currentPlayer = this.player1; // On commence toujours par le joueur 1.
     }
@@ -89,8 +79,10 @@ public class TicTacToe {
             board[move[0]][move[1]].setRepresentation(currentPlayer.getRepresentation());
             // Changer de joueur après chaque coup
 
-        } else {
+        } else { // Rejouer si case déjà prise
             view.cellTaken();
+            int[] newMove = getMoveFromPlayer(currentPlayer);
+            cellEmpty(newMove);
         }
     }
 

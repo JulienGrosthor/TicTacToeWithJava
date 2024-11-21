@@ -5,7 +5,7 @@ public class View {
     }
 
     public void playerMoveChoice(Player currentPlayer) {
-        System.out.println("Player " + currentPlayer.getRepresentation() + ", enter row then column (between 1 and 3): ");
+        System.out.println("Player " + currentPlayer.getRepresentation() + ", enter row + ENTER, then column + ENTER (between 1 and 3): ");
     }
 
     public void cellTaken() {
