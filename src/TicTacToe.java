@@ -1,3 +1,7 @@
+/**
+ * Classe principale du jeu de Tic Tac Toe.
+ * Gère l'initialisation du plateau, des joueurs, et la logique du jeu.
+ */
 public class TicTacToe {
 
     private final int size = 3; // Taille du plateau de jeu
@@ -6,7 +10,10 @@ public class TicTacToe {
     private Player player2; // Le joueur 2.
     private Player currentPlayer; // Le joueur actuel.
 
-    // Constructeur pour initialiser le plateau de jeu et les joueurs
+    /**
+     * Constructeur par défaut pour initialiser le jeu.
+     * Initialise le plateau et configure les joueurs.
+     */
     public TicTacToe() {
         initBoard();
         initPlayers();
@@ -38,7 +45,10 @@ public class TicTacToe {
         }
     }
 
-    // Méthode pour jouer à tour de rôle.
+    /**
+     * Permet de jouer à tour de rôle jusqu'à ce qu'il y ait un gagnant ou une égalité.
+     * Gère également les changements de joueur et les interactions avec les joueurs.
+     */
     public void play() {
 
         View view = new View();
@@ -86,6 +96,12 @@ public class TicTacToe {
         }
     }
 
+    /**
+     * Récupère le mouvement du joueur actuel.
+     *
+     * @param player Le joueur qui joue actuellement.
+     * @return Un tableau contenant les coordonnées de la case (ligne, colonne).
+     */
     public int[] getMoveFromPlayer(Player player) {
 
         return player.makeMove(this.board);
@@ -171,7 +187,9 @@ public class TicTacToe {
         return diagonal;
     }
 
-    // Méthode pour afficher le plateau de jeu
+    /**
+     * Affiche le plateau de jeu à chaque étape.
+     */
     public void display() {
 
         View view = new View();
