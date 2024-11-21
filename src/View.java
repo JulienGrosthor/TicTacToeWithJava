@@ -44,4 +44,8 @@ public class View {
         System.out.println("Is Player 2 (O) a human? (yay/nay)");
     }
 
+    public void wrongInput() {
+        System.out.println("Wrong imput, please try again.");
+    }
+
 }

@@ -3,23 +3,29 @@ import java.util.Scanner;
 public class UserInteraction {
 
     private final Scanner scanner = new Scanner(System.in);
+    View view = new View();
 
     protected Player initPlayerOne() {
-        String input1 = scanner.nextLine();
-        if (input1.equalsIgnoreCase("yay")) {
+        String input1 = scanner.nextLine().trim().toLowerCase();
+        if (input1.equals("yay")) {
             return new HumanPlayer(" X ");
-        } else {
+        } else if (input1.equals("nay")) {
             return new ArtificialPlayer(" X ");
+        } else {
+            view.wrongInput();
+            return initPlayerOne();
         }
     }
 
-
     protected Player initPlayerTwo() {
-        String input2 = scanner.nextLine();
-        if (input2.equalsIgnoreCase("yay")) {
+        String input1 = scanner.nextLine().trim().toLowerCase();
+        if (input1.equals("yay")) {
             return new HumanPlayer(" O ");
-        } else {
+        } else if (input1.equals("nay")) {
             return new ArtificialPlayer(" O ");
+        } else {
+            view.wrongInput();
+            return initPlayerTwo();
         }
     }
 }
