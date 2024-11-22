@@ -1,5 +1,5 @@
 package player;
-import game.Cell;
+import cell.Cell;
 
 /**
  * Classe abstraite représentant un joueur de Tic Tac Toe.

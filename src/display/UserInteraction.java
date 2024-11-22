@@ -1,9 +1,8 @@
-package game;
+package display;
 
 import player.Player;
 import player.HumanPlayer;
 import player.ArtificialPlayer;
-import vue.View;
 
 import java.util.Scanner;
 
@@ -20,7 +19,7 @@ public class UserInteraction {
      *
      * @return Un joueur (humain ou artificiel) pour le joueur 1.
      */
-    protected Player initPlayerOne() {
+    public Player initPlayerOne() {
         String input1 = scanner.nextLine().trim().toLowerCase();
         if (input1.equals("yay")) {
             return new HumanPlayer(" X ");
@@ -37,7 +36,7 @@ public class UserInteraction {
      *
      * @return Un joueur (humain ou artificiel) pour le joueur 2.
      */
-    protected Player initPlayerTwo() {
+    public Player initPlayerTwo() {
         String input1 = scanner.nextLine().trim().toLowerCase();
         if (input1.equals("yay")) {
             return new HumanPlayer(" O ");
@@ -48,4 +47,25 @@ public class UserInteraction {
             return initPlayerTwo();
         }
     }
+
+//    public void getPlayerChoice() {
+//        int choice;
+//
+//        // Boucle jusqu'à ce que l'utilisateur saisisse un choix valide
+//        while (true) {
+//            try {
+//                choice = Integer.parseInt(scanner.nextLine());
+//
+//                // Vérifier si l'entrée est valide
+//                if (choice == 1 || choice == 2 || choice == 3) {
+//                    return;
+//                } else {
+//                    view.wrongInput();
+//                }
+//            } catch (NumberFormatException e) {
+//                view.wrongInput();
+//            }
+//        }
+//    }
+
 }

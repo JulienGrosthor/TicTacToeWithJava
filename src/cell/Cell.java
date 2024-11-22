@@ -1,4 +1,4 @@
-package game;
+package cell;
 
 /**
  * Classe représentant une cellule du plateau de jeu.

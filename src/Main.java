@@ -1,3 +1,6 @@
+import game.BoardGame;
+import game.ConnectFour;
+import game.Gomoku;
 import game.TicTacToe;
 
 /**
@@ -5,13 +8,22 @@ import game.TicTacToe;
  * Démarre le jeu de Tic Tac Toe.
  */
 public class Main {
-    /**
-     * Point d'entrée principal du programme.
-     *
-     * @param args Arguments en ligne de commande (non utilisés ici).
-     */
+
+    //TEST MORPION
+//    public static void main(String[] args) {
+//        BoardGame ticTacToe = new TicTacToe();
+//        ticTacToe.play();
+//    }
+
+    //TEST GOMOKU
     public static void main(String[] args) {
-        TicTacToe ticTacToe = new TicTacToe();
-        ticTacToe.play();
+        BoardGame gomoku = new Gomoku();
+        gomoku.play();
     }
+
+    //TEST PUISSANCE4
+//    public static void main(String[] args) {
+//        BoardGame connectFour = new ConnectFour();
+//        connectFour.play();
+//    }
 }

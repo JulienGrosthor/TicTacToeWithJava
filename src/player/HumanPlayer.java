@@ -1,7 +1,7 @@
 package player;
 
 import java.util.Scanner;
-import game.Cell;
+import cell.Cell;
 
 /**
  * Classe représentant un joueur humain pour le jeu de Tic Tac Toe.

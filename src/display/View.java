@@ -1,6 +1,6 @@
-package vue;
+package display;
 
-import game.Cell;
+import cell.Cell;
 import player.Player;
 
 /**
@@ -16,6 +16,10 @@ public class View {
         System.out.println("WINNER WINNER CHICKEN DINNER!!!");
     }
 
+    public void drawText() {
+        System.out.println("It's a draw!");
+    }
+
     /**
      * Affiche un message pour demander au joueur actuel de jouer.
      *
@@ -29,7 +33,7 @@ public class View {
      * Affiche un message lorsque la cellule choisie est déjà prise.
      */
     public void cellTaken() {
-        System.out.println("game.Cell is already taken, please try again.");
+        System.out.println("cell.Cell is already taken, please try again.");
     }
 
     /**
@@ -37,46 +41,42 @@ public class View {
      */
     public void displayBanner() {
         System.out.println("""
-                ╭━━━━╮╱╱╱╭━━━━╮╱╱╱╱╱╭━━━━╮
-                ┃╭╮╭╮┃╱╱╱┃╭╮╭╮┃╱╱╱╱╱┃╭╮╭╮┃
-                ╰╯┃┃┣╋━━╮╰╯┃┃┣┻━┳━━╮╰╯┃┃┣┻━┳━━╮
-                ╱╱┃┃┣┫╭━╯╱╱┃┃┃╭╮┃╭━╯╱╱┃┃┃╭╮┃┃━┫
-                ╱╱┃┃┃┃╰━╮╱╱┃┃┃╭╮┃╰━╮╱╱┃┃┃╰╯┃┃━┫
-                ╱╱╰╯╰┻━━╯╱╱╰╯╰╯╰┻━━╯╱╱╰╯╰━━┻━━╯
-                It's time to dudu du dududududuelll!!""");
+                  ________                              ___________.__               \s
+                 /  _____/_____    _____   ____         \\__    ___/|__| _____   ____ \s
+                /   \\  ___\\__  \\  /     \\_/ __ \\   ______ |    |   |  |/     \\_/ __ \\\s
+                \\    \\_\\  \\/ __ \\|  Y Y  \\  ___/  /_____/ |    |   |  |  Y Y  \\  ___/\s
+                 \\______  (____  /__|_|  /\\___  >         |____|   |__|__|_|  /\\___  >
+                        \\/     \\/      \\/     \\/                            \\/     \\/\s
+                """);
     }
 
-    /**
-     * Affiche le plateau de jeu avec les symboles actuels.
-     *
-     * @param board Le plateau de jeu.
-     * @param size  La taille du plateau.
-     */
-    public void displayBoard(Cell[][] board, int size) {
+    public void displayBoard(Cell[][] board, int rows, int cols) {
+        String separator = "-".repeat(cols * 4 + 1);
+
         // Afficher le plateau
-        for (int i = 0; i < size; i++) {
-            System.out.println("-------------");
+        for (int i = 0; i < rows; i++) {
+            System.out.println(separator);
             System.out.print("|");
-            for (int j = 0; j < size; j++) {
+            for (int j = 0; j < cols; j++) {
                 System.out.print(board[i][j].getRepresentation() + "|");
             }
             System.out.println();
         }
-        System.out.println("-------------");
+        System.out.println(separator);
     }
 
     /**
      * Affiche un message pour demander si le joueur 1 est humain ou artificiel.
      */
     public void playerOneChoice() {
-        System.out.println("Is Player.Player 1 (X) a human? (yay/nay)");
+        System.out.println("Is Player 1 (X) a human? (yay/nay)");
     }
 
     /**
      * Affiche un message pour demander si le joueur 2 est humain ou artificiel.
      */
     public void playerTwoChoice() {
-        System.out.println("Is Player.Player 2 (O) a human? (yay/nay)");
+        System.out.println("Is Player 2 (O) a human? (yay/nay)");
     }
 
     /**

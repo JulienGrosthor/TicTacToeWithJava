@@ -2,7 +2,7 @@ package player;
 
 
 import java.util.Random;
-import game.Cell;
+import cell.Cell;
 
 
 /**
@@ -24,12 +24,11 @@ public class ArtificialPlayer extends Player {
     public int[] makeMove(Cell[][] board) {
         Random random = new Random();
         int row, col;
-
         do {
-            row = random.nextInt(3); // Génère un index entre 0 et 2
-            col = random.nextInt(3);
-        } while (!board[row][col].getRepresentation().equals("   ")); // Vérifie que la case est vide
-
+            row = random.nextInt(board.length); // Taille dynamique
+            col = random.nextInt(board[0].length);
+        } while (!board[row][col].getRepresentation().equals("   "));
         return new int[]{row, col};
     }
+
 }
