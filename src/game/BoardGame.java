@@ -83,12 +83,9 @@ public abstract class BoardGame {
         } while (!(isDraw() || isOver(this.board)));
 
         display();
-        view.victoryText();
-        System.exit(0);
+        view.finishText();
+        Runtime.getRuntime().halt(userInteraction.getIntInput());
     }
-
-
-
 
     protected void changeCurrentPlayer() {
         this.currentPlayer = (currentPlayer == player1) ? player2 : player1;
@@ -141,17 +138,18 @@ public abstract class BoardGame {
     public int[] getMoveFromPlayer(Player player) {
 
         UserInteraction userInteraction = new UserInteraction();
+        View view = new View();
 
         int row = -1;
         int col = -1;
 
         if (player instanceof HumanPlayer) {
         // Lire la ligne
-        System.out.print("Row: ");
+        view.showRowInput();
         row = userInteraction.getIntInput() - 1; // Lecture d'un entier pour la ligne
 
         // Lire la colonne
-        System.out.print("Column: ");
+        view.showColumnInput();
         col = userInteraction.getIntInput() - 1; // Lecture d'un entier pour la colonne
 
         return new int[]{row, col};

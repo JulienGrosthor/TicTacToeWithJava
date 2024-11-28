@@ -3,42 +3,38 @@ package display;
 import cell.Cell;
 import player.Player;
 
-/**
- * Classe responsable de l'affichage des messages et du plateau de jeu.
- * Elle centralise toutes les interactions visuelles.
- */
 public class View {
 
-    /**
-     * Affiche un message de victoire.
-     */
-    public void victoryText() {
-        System.out.println("WINNER WINNER CHICKEN DINNER!!!");
+    public void showMenu() {
+        System.out.println("""
+                    CHOOSE YOUR GAME:\s
+                    1) TicTacToe\s
+                    2) Connect Four\s
+                    3) Gomoku\s
+                    4) QUIT
+                    """);
     }
 
-    public void drawText() {
-        System.out.println("It's a draw!");
+    public void okBye() {
+        System.out.println("Ok bye!");
     }
 
-    /**
-     * Affiche un message pour demander au joueur actuel de jouer.
-     *
-     * @param currentPlayer Le joueur dont c'est le tour.
-     */
+    public void finishText() {
+        System.out.println("GAME OVER");
+    }
+
+//    public void drawText() {
+//        System.out.println("It's a draw!");
+//    }
+
     public void playerMoveChoice(Player currentPlayer) {
         System.out.println("player " + currentPlayer.getRepresentation() + ", enter row + ENTER, then column + ENTER (between 1 and 3): ");
     }
 
-    /**
-     * Affiche un message lorsque la cellule choisie est déjà prise.
-     */
     public void cellTaken() {
-        System.out.println("cell.Cell is already taken, please try again.");
+        System.out.println("Cell is already taken, please try again.");
     }
 
-    /**
-     * Affiche une bannière ASCII pour le jeu.
-     */
     public void displayBanner() {
         System.out.println("""
                   ________                              ___________.__               \s
@@ -65,24 +61,23 @@ public class View {
         System.out.println(separator);
     }
 
-    /**
-     * Affiche un message pour demander si le joueur 1 est humain ou artificiel.
-     */
     public void playerOneChoice() {
         System.out.println("Is Player 1 (X) a human? (yay/nay)");
     }
 
-    /**
-     * Affiche un message pour demander si le joueur 2 est humain ou artificiel.
-     */
     public void playerTwoChoice() {
         System.out.println("Is Player 2 (O) a human? (yay/nay)");
     }
 
-    /**
-     * Affiche un message pour indiquer une saisie incorrecte.
-     */
     public void wrongInputs() {
-        System.out.println("Wrong inputs, please try again.");
+        System.out.println("Wrong input(s), please try again.");
+    }
+
+    public void showRowInput() {
+        System.out.println("Enter row:");
+    }
+
+    public void showColumnInput() {
+        System.out.println("Enter column:");
     }
 }

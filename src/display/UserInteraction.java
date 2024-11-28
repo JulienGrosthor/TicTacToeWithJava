@@ -1,24 +1,42 @@
 package display;
 
+import game.BoardGame;
+import game.ConnectFour;
+import game.Gomoku;
+import game.TicTacToe;
 import player.Player;
 import player.HumanPlayer;
 import player.ArtificialPlayer;
 
 import java.util.Scanner;
 
-/**
- * Classe responsable des interactions avec les utilisateurs lors de la configuration des joueurs.
- */
 public class UserInteraction {
 
     private final Scanner scanner = new Scanner(System.in);
     View view = new View();
 
-    /**
-     * Initialise le joueur 1 (humain ou artificiel) selon la saisie de l'utilisateur.
-     *
-     * @return Un joueur (humain ou artificiel) pour le joueur 1.
-     */
+    public BoardGame playerMenu() {
+        while (true) {
+            view.showMenu();
+
+            int choice = getIntInput();
+
+            switch (choice) {
+                case 1:
+                    return new TicTacToe();
+                case 2:
+                    return new ConnectFour();
+                case 3:
+                    return new Gomoku();
+                case 4:
+                    view.okBye();
+                    System.exit(0);
+                default:
+                    view.wrongInputs();
+            }
+        }
+    }
+
     public Player initPlayerOne() {
         String input1 = scanner.nextLine().trim().toLowerCase();
         if (input1.equals("yay")) {
@@ -31,11 +49,6 @@ public class UserInteraction {
         }
     }
 
-    /**
-     * Initialise le joueur 2 (humain ou artificiel) selon la saisie de l'utilisateur.
-     *
-     * @return Un joueur (humain ou artificiel) pour le joueur 2.
-     */
     public Player initPlayerTwo() {
         String input1 = scanner.nextLine().trim().toLowerCase();
         if (input1.equals("yay")) {
