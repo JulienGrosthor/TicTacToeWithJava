@@ -3,6 +3,8 @@ package game;
 import cell.Cell;
 import display.UserInteraction;
 import display.View;
+import player.ArtificialPlayer;
+import player.HumanPlayer;
 import player.Player;
 
 public abstract class BoardGame {
@@ -59,32 +61,34 @@ public abstract class BoardGame {
      * Gère également les changements de joueur et les interactions avec les joueurs.
      */
     public void play() {
-
         View view = new View();
+        UserInteraction userInteraction = new UserInteraction();
 
-        // Tant que le jeu n'est pas terminé
         do {
-            // Afficher le plateau
             display();
 
-            // Demander le coup du joueur actuel.
-            view.playerMoveChoice(currentPlayer);
-
-            int[] move = getMoveFromPlayer(this.currentPlayer);
-
-            // Marquer la case avec le symbole du joueur actuel.
-            cellEmpty(move);
-
-            if (!(isDraw() || isOver(this.board))) {
-                changeCurrentPlayer();
+            int[] move;
+            if (currentPlayer != null) {
+                view.playerMoveChoice(currentPlayer);
+                move = getMoveFromPlayer(currentPlayer); // Demande d'input utilisateur
+            } else {
+                move = currentPlayer.makeMove(board); // IA choisit ses coordonnées
             }
 
+            cellEmpty(move); // Validation et mise à jour du plateau avec les coordonnées
+
+            if (!(isDraw() || isOver(this.board))) {
+                changeCurrentPlayer(); // Changement de joueur si le jeu continue
+            }
         } while (!(isDraw() || isOver(this.board)));
 
         display();
         view.victoryText();
-        System.exit(666);
+        System.exit(0);
     }
+
+
+
 
     protected void changeCurrentPlayer() {
         this.currentPlayer = (currentPlayer == player1) ? player2 : player1;
@@ -136,7 +140,24 @@ public abstract class BoardGame {
      */
     public int[] getMoveFromPlayer(Player player) {
 
-        return player.makeMove(this.board);
+        UserInteraction userInteraction = new UserInteraction();
+
+        int row = -1;
+        int col = -1;
+
+        if (player instanceof HumanPlayer) {
+        // Lire la ligne
+        System.out.print("Row: ");
+        row = userInteraction.getIntInput() - 1; // Lecture d'un entier pour la ligne
+
+        // Lire la colonne
+        System.out.print("Column: ");
+        col = userInteraction.getIntInput() - 1; // Lecture d'un entier pour la colonne
+
+        return new int[]{row, col};
+        } else {
+            return player.makeMove(board);
+        }
     }
 
     // Méthode pour vérifier si le jeu est à égalité

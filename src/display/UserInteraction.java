@@ -47,4 +47,14 @@ public class UserInteraction {
             return initPlayerTwo();
         }
     }
+
+    // Méthode pour lire un entier avec validation
+    public int getIntInput() {
+
+        while (!scanner.hasNextInt()) {
+            scanner.next(); // Vider le buffer pour ignorer l'entrée incorrecte
+            view.wrongInputs();
+        }
+        return scanner.nextInt();
+    }
 }
