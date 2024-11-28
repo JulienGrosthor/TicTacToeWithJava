@@ -6,6 +6,5 @@ public class Gomoku extends BoardGame {
         super(15, 15);
         initPlayers();
         play();
-        changeCurrentPlayer();
     }
 }

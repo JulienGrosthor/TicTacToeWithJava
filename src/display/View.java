@@ -82,7 +82,7 @@ public class View {
     /**
      * Affiche un message pour indiquer une saisie incorrecte.
      */
-    public void wrongInput() {
-        System.out.println("Wrong input, please try again.");
+    public void wrongInputs() {
+        System.out.println("Wrong s, please try again.");
     }
 }

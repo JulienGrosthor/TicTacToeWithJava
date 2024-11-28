@@ -61,7 +61,6 @@ public abstract class BoardGame {
     public void play() {
 
         View view = new View();
-        UserInteraction userInteraction = new UserInteraction();
 
         // Tant que le jeu n'est pas terminé
         do {
@@ -70,8 +69,6 @@ public abstract class BoardGame {
 
             // Demander le coup du joueur actuel.
             view.playerMoveChoice(currentPlayer);
-
-//            userInteraction.getPlayerChoice();
 
             int[] move = getMoveFromPlayer(this.currentPlayer);
 
@@ -105,19 +102,30 @@ public abstract class BoardGame {
     }
 
     private void cellEmpty(int[] move) {
-
         View view = new View();
 
-        if (board[move[0]][move[1]].getRepresentation().equals("   ")) {
-
-            board[move[0]][move[1]].setRepresentation(currentPlayer.getRepresentation());
-            // Changer de joueur après chaque coup
-
-        } else { // Rejouer si case déjà prise
-            view.cellTaken();
+        // Vérifier si le coup est dans les limites du plateau
+        if (!isValidMove(move)) {
+            view.wrongInputs(); // Afficher un message d'erreur
             int[] newMove = getMoveFromPlayer(currentPlayer);
-            cellEmpty(newMove);
+            cellEmpty(newMove); // Rejouer
+            return;
         }
+
+        // Vérifier si la case est vide
+        if (board[move[0]][move[1]].getRepresentation().isBlank()) {
+            board[move[0]][move[1]].setRepresentation(currentPlayer.getRepresentation());
+        } else {
+            view.cellTaken(); // Case déjà prise
+            int[] newMove = getMoveFromPlayer(currentPlayer);
+            cellEmpty(newMove); // Rejouer
+        }
+    }
+
+    private boolean isValidMove(int[] move) {
+        int row = move[0];
+        int col = move[1];
+        return row >= 0 && row < rows && col >= 0 && col < cols;
     }
 
     /**
@@ -173,7 +181,7 @@ public abstract class BoardGame {
     // Vérifie si toutes les cellules d'une ligne/colonne/diagonale sont identiques
     private boolean areAllCellsEqual(Cell[] cells) {
         String first = cells[0].getRepresentation();
-        if (first == null ||first.isBlank()) {
+        if (first == null || first.isBlank()) {
             return false; // Case vide : pas de victoire
         }
         for (Cell cell : cells) {

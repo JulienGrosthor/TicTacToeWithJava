@@ -26,7 +26,7 @@ public class UserInteraction {
         } else if (input1.equals("nay")) {
             return new ArtificialPlayer(" X ");
         } else {
-            view.wrongInput();
+            view.wrongInputs();
             return initPlayerOne();
         }
     }
@@ -43,29 +43,8 @@ public class UserInteraction {
         } else if (input1.equals("nay")) {
             return new ArtificialPlayer(" O ");
         } else {
-            view.wrongInput();
+            view.wrongInputs();
             return initPlayerTwo();
         }
     }
-
-//    public void getPlayerChoice() {
-//        int choice;
-//
-//        // Boucle jusqu'à ce que l'utilisateur saisisse un choix valide
-//        while (true) {
-//            try {
-//                choice = Integer.parseInt(scanner.nextLine());
-//
-//                // Vérifier si l'entrée est valide
-//                if (choice == 1 || choice == 2 || choice == 3) {
-//                    return;
-//                } else {
-//                    view.wrongInput();
-//                }
-//            } catch (NumberFormatException e) {
-//                view.wrongInput();
-//            }
-//        }
-//    }
-
 }

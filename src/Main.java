@@ -10,16 +10,16 @@ import game.TicTacToe;
 public class Main {
 
     //TEST MORPION
-//    public static void main(String[] args) {
-//        BoardGame ticTacToe = new TicTacToe();
-//        ticTacToe.play();
-//    }
+    public static void main(String[] args) {
+        BoardGame ticTacToe = new TicTacToe();
+        ticTacToe.play();
+    }
 
     //TEST GOMOKU
-    public static void main(String[] args) {
-        BoardGame gomoku = new Gomoku();
-        gomoku.play();
-    }
+//    public static void main(String[] args) {
+//        BoardGame gomoku = new Gomoku();
+//        gomoku.play();
+//    }
 
     //TEST PUISSANCE4
 //    public static void main(String[] args) {

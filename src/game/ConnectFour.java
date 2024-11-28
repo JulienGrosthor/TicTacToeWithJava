@@ -6,6 +6,5 @@ public class ConnectFour extends BoardGame{
         super(6, 7);
         initPlayers();
         play();
-        changeCurrentPlayer();
     }
 }
