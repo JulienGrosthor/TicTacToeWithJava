@@ -1,8 +1,7 @@
-package player;
+package model;
 
 
 import java.util.Random;
-import cell.Cell;
 
 
 /**

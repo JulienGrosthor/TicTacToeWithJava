@@ -1,11 +1,7 @@
-package game;
+package model;
 
-import cell.Cell;
-import display.UserInteraction;
-import display.View;
-import player.ArtificialPlayer;
-import player.HumanPlayer;
-import player.Player;
+import controller.UserInteraction;
+import view.View;
 
 public abstract class BoardGame {
 
@@ -56,10 +52,6 @@ public abstract class BoardGame {
         this.currentPlayer = this.player1; // On commence toujours par le joueur 1.
     }
 
-    /**
-     * Permet de jouer à tour de rôle jusqu'à ce qu'il y ait un gagnant ou une égalité.
-     * Gère également les changements de joueur et les interactions avec les joueurs.
-     */
     public void play() {
         View view = new View();
         UserInteraction userInteraction = new UserInteraction();

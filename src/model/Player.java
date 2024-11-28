@@ -1,5 +1,4 @@
-package player;
-import cell.Cell;
+package model;
 
 /**
  * Classe abstraite représentant un joueur de Tic Tac Toe.

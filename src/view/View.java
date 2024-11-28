@@ -1,7 +1,7 @@
-package display;
+package view;
 
-import cell.Cell;
-import player.Player;
+import model.Cell;
+import model.Player;
 
 public class View {
 

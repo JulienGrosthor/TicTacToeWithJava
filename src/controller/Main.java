@@ -1,8 +1,6 @@
-import display.UserInteraction;
-import game.BoardGame;
-import game.ConnectFour;
-import game.Gomoku;
-import game.TicTacToe;
+package controller;
+
+import model.BoardGame;
 
 /**
  * Classe principale contenant le point d'entrée du programme.
