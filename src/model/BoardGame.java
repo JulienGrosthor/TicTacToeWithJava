@@ -55,6 +55,7 @@ public abstract class BoardGame {
     public void play() {
         View view = new View();
         UserInteraction userInteraction = new UserInteraction();
+        EndGameVerification endGameVerification = new EndGameVerification(board, rows, cols);
 
         do {
             display();
@@ -69,10 +70,10 @@ public abstract class BoardGame {
 
             cellEmpty(move); // Validation et mise à jour du plateau avec les coordonnées
 
-            if (!(isDraw() || isOver(this.board))) {
+            if (!(endGameVerification.isDraw() || endGameVerification.isOver())) {
                 changeCurrentPlayer(); // Changement de joueur si le jeu continue
             }
-        } while (!(isDraw() || isOver(this.board)));
+        } while (!(endGameVerification.isDraw() || endGameVerification.isOver()));
 
         display();
         view.finishText();
@@ -151,84 +152,18 @@ public abstract class BoardGame {
     }
 
     // Méthode pour vérifier si le jeu est à égalité
-    private boolean isDraw() {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (this.board[i][j].getRepresentation().isBlank()) {
-                    return false; // Si une cellule est vide, pas de match nul
-                }
-            }
-        }
-        return true; // Toutes les cellules sont remplies
-    }
+
 
     // Méthode pour vérifier si le jeu est terminé
-    private boolean isOver(Cell[][] board) {
-        return (verifyRows(board) || verifyCols(board) || verifyDiagonals(board));
-    }
 
-    private boolean verifyDiagonals(Cell[][] board) {
-        return (areAllCellsEqual(getPrimaryDiagonal(board)) || areAllCellsEqual(getSecondaryDiagonal(board)));
-    }
 
-    private boolean verifyRows(Cell[][] board) {
-        for (int i = 0; i < this.rows; i++) {
-            if (areAllCellsEqual(board[i])) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    private boolean verifyCols(Cell[][] board) {
-        for (int i = 0; i < this.cols; i++) {
-            if (areAllCellsEqual(getColumn(i, board))) {
-                return true;
-            }
-        }
-        return false;
-    }
+
+
+
+
 
     // Vérifie si toutes les cellules d'une ligne/colonne/diagonale sont identiques
-    private boolean areAllCellsEqual(Cell[] cells) {
-        String first = cells[0].getRepresentation();
-        if (first == null || first.isBlank()) {
-            return false; // Case vide : pas de victoire
-        }
-        for (Cell cell : cells) {
-            if (!cell.getRepresentation().equals(first)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
-    // Retourne une colonne sous forme de tableau
-    private Cell[] getColumn(int colIndex, Cell[][] board) {
-        Cell[] column = new Cell[cols];
-        for (int i = 0; i < cols; i++) {
-            column[i] = board[i][colIndex];
-        }
-        return column;
-    }
 
-    // Retourne la diagonale principale (de haut-gauche à bas-droite)
-    private Cell[] getPrimaryDiagonal(Cell[][] board) {
-        int size = Math.min(rows, cols);
-        Cell[] diagonal = new Cell[size];
-        for (int i = 0; i < size; i++) {
-            diagonal[i] = board[i][i];
-        }
-        return diagonal;
-    }
-
-    // Retourne la diagonale secondaire (de haut-droite à bas-gauche)
-    private Cell[] getSecondaryDiagonal(Cell[][] board) {
-        int size = Math.min(rows, cols);
-        Cell[] diagonal = new Cell[size];
-        for (int i = 0; i < size; i++) {
-            diagonal[i] = board[i][size - 1 - i];
-        }
-        return diagonal;
-    }
 }
