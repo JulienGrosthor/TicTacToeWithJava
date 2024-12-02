@@ -1,12 +1,12 @@
 package controller;
 
-import model.BoardGame;
-import model.ConnectFour;
-import model.Gomoku;
-import model.TicTacToe;
-import model.Player;
-import model.HumanPlayer;
-import model.ArtificialPlayer;
+import model.games.BoardGame;
+import model.games.ConnectFour;
+import model.games.Gomoku;
+import model.games.TicTacToe;
+import model.player.Player;
+import model.player.HumanPlayer;
+import model.player.ArtificialPlayer;
 import view.View;
 
 import java.util.Scanner;

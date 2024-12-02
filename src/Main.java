@@ -1,11 +1,6 @@
-package controller;
+import controller.UserInteraction;
+import model.games.BoardGame;
 
-import model.BoardGame;
-
-/**
- * Classe principale contenant le point d'entrée du programme.
- * Démarre le jeu de Tic Tac Toe.
- */
 public class Main {
 
     public static void main(String[] args) {

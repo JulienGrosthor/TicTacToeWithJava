@@ -1,7 +1,7 @@
 package view;
 
-import model.Cell;
-import model.Player;
+import model.board.Cell;
+import model.player.Player;
 
 public class View {
 
@@ -22,10 +22,6 @@ public class View {
     public void finishText() {
         System.out.println("GAME OVER");
     }
-
-//    public void drawText() {
-//        System.out.println("It's a draw!");
-//    }
 
     public void playerMoveChoice(Player currentPlayer) {
         System.out.println("player " + currentPlayer.getRepresentation() + ", enter row + ENTER, then column + ENTER (between 1 and 3): ");

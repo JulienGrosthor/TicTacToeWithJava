@@ -1,4 +1,6 @@
-package model;
+package model.games;
+
+import model.board.Cell;
 
 public class EndGameVerification {
     private final Cell[][] board;

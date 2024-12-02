@@ -1,6 +1,9 @@
-package model;
+package model.games;
 
 import controller.UserInteraction;
+import model.player.HumanPlayer;
+import model.player.Player;
+import model.board.Cell;
 import view.View;
 
 public abstract class BoardGame {
@@ -84,9 +87,6 @@ public abstract class BoardGame {
         this.currentPlayer = (currentPlayer == player1) ? player2 : player1;
     }
 
-    /**
-     * Affiche le plateau de jeu à chaque étape.
-     */
     public void display() {
 
         View view = new View();
@@ -122,12 +122,6 @@ public abstract class BoardGame {
         return row >= 0 && row < rows && col >= 0 && col < cols;
     }
 
-    /**
-     * Récupère le mouvement du joueur actuel.
-     *
-     * @param player Le joueur qui joue actuellement.
-     * @return Un tableau contenant les coordonnées de la case (ligne, colonne).
-     */
     public int[] getMoveFromPlayer(Player player) {
 
         UserInteraction userInteraction = new UserInteraction();
@@ -150,20 +144,4 @@ public abstract class BoardGame {
             return player.makeMove(board);
         }
     }
-
-    // Méthode pour vérifier si le jeu est à égalité
-
-
-    // Méthode pour vérifier si le jeu est terminé
-
-
-
-
-
-
-
-
-    // Vérifie si toutes les cellules d'une ligne/colonne/diagonale sont identiques
-
-
 }
