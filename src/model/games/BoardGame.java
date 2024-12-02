@@ -15,6 +15,8 @@ public abstract class BoardGame {
     private Player player2; // Le joueur 2.
     private Player currentPlayer; // Le joueur actuel.
 
+    View view = new View();
+
     public BoardGame(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
@@ -41,7 +43,6 @@ public abstract class BoardGame {
 
     protected void initPlayers() {
 
-        View view = new View();
         UserInteraction userInteraction = new UserInteraction();
 
         // Config joueur 1
@@ -56,7 +57,6 @@ public abstract class BoardGame {
     }
 
     public void play() {
-        View view = new View();
         UserInteraction userInteraction = new UserInteraction();
         EndGameVerification endGameVerification = new EndGameVerification(board, rows, cols);
 
@@ -89,14 +89,11 @@ public abstract class BoardGame {
 
     public void display() {
 
-        View view = new View();
-
         view.displayBanner();
         view.displayBoard(board, getRows(), getCols());
     }
 
     private void cellEmpty(int[] move) {
-        View view = new View();
 
         // Vérifier si le coup est dans les limites du plateau
         if (!isValidMove(move)) {
@@ -125,7 +122,6 @@ public abstract class BoardGame {
     public int[] getMoveFromPlayer(Player player) {
 
         UserInteraction userInteraction = new UserInteraction();
-        View view = new View();
 
         int row = -1;
         int col = -1;
